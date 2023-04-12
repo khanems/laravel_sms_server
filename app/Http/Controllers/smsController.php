@@ -9,11 +9,11 @@ class smsController extends Controller
 {
 
 
-   public function sendsms($device = 0, $schedule = null, $isMMS = false, $attachments = null, $prioritize = 1)
+   public function sendsms($Sms, $device = 0, $schedule = null, $isMMS = false, $attachments = null, $prioritize = 1)
              {
                $url = 'https://al.geeks.com.pk/services/send.php';
                $postData = array(
-               'number' => '+923151965317,03360010088',
+               'number' => $Sms,
                'message' => 'this pnm new ',
                'schedule' => $schedule,
                'key' => 'e1607d243a7c89c9b12201c257fc56d2767d7b17',
@@ -39,7 +39,7 @@ class smsController extends Controller
             public function second()
             {
                 
-                $firebaseQuery =  app('App\Http\Controllers\SmsController')->sendsms();
+                $firebaseQuery =  app('App\Http\Controllers\SmsController')->sendsms('this is sms');
             }
         
 
