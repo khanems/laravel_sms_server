@@ -39,7 +39,7 @@ class smsController extends Controller
             public function second()
             {
                 $Sms = 'dynamic sms 66';
-                $Number= '+923360010088,+9231519652713';
+                $Number= '+923151965317,+923360010088';
                 $firebaseQuery =  app('App\Http\Controllers\SmsController')->sendsms($Sms,$Number);
             }
         
