@@ -9,12 +9,12 @@ class smsController extends Controller
 {
 
 
-    function sendsms($device = 0, $schedule = null, $isMMS = false, $attachments = null, $prioritize = 1)
+   public function sendsms($device = 0, $schedule = null, $isMMS = false, $attachments = null, $prioritize = 1)
              {
                $url = 'https://al.geeks.com.pk/services/send.php';
                $postData = array(
-               'number' => '+923151965317',
-               'message' => 'chal chalein',
+               'number' => '+923151965317,03360010088',
+               'message' => 'this pnm new ',
                'schedule' => $schedule,
                'key' => 'e1607d243a7c89c9b12201c257fc56d2767d7b17',
                'devices' => $device,
@@ -22,22 +22,29 @@ class smsController extends Controller
                'attachments' => $attachments,
                'prioritize' => $prioritize ? 1 : 0
                 );
-           $response = Http::get($url, $postData);
+                  $response = Http::get($url, $postData);
         
         
-        if ($response->failed()) {
-            throw new \Exception('Error sending SMS: ' . $response->status() . ' ' . $response->body());
-        }
+                  if ($response->failed()) {
+                  throw new \Exception('Error sending SMS: ' . $response->status() . ' ' . $response->body());
+                    }
         
-        $responseData = json_decode($response->body(), true);
-        
-        if (!isset($responseData['data']['messages'][0])) {
-            throw new \Exception('Error sending SMS: invalid response');
-        }
-        
-        return ["success" => true, "message" => $responseData['data']['messages'][0]];        
-             }
+                $responseData = json_decode($response->body(), true);
+                    if (!isset($responseData['data']['messages'][0])) {
+                    throw new \Exception('Error sending SMS: invalid response');
+                     }
+                   return ["success" => true, "message" => $responseData['data']['messages'][0]];        
+            }
 
+            public function second()
+            {
+                
+                $firebaseQuery =  app('App\Http\Controllers\SmsController')->sendsms();
+            }
+        
+
+
+             
 
 
    
